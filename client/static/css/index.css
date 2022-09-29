@@ -1,0 +1,261 @@
+body{
+    padding: 0;
+    margin: 0;
+    color: #292929;
+    font-size: 1.02rem;
+    font-weight: 500;
+}
+h1,h2,h3,h4,ul ,p{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+p{
+    font-size: medium;
+    font-weight: 400;
+}
+ul{
+    list-style-type: none;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+    width: 100%;
+    height: 60px;
+    padding: 20px 40px;
+    border-bottom: 1px solid #e6e6e6 ;
+    box-sizing: border-box;
+
+}
+#nav-bar-burger{
+    display: block;
+    padding: 10px;
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+.header ul{
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 40px;
+    width: fit-content;
+    position: fixed;
+    right: 0;
+    top: 60px;
+    bottom: 0;
+    background-color: #e6e6e6;
+}
+.header .android{
+    display : none ;
+}
+.header ul li:hover{
+    color: #2e902a;
+}
+#sign-out{
+    height: 30px;
+    border: 1px solid #ff1f1e;
+    background-color: #f74343;
+    color: #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+#sign-out a{
+    padding: 10px;
+}
+#sign-out:hover{
+    color: #ff1f1e;
+    background-color: #fff;
+}
+.header form{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 30px;
+    position: relative;
+    border-radius: 6px;
+}
+.header form p{
+    /* position: absolute; */
+    height: 100%;
+    padding: 0 10px;
+    background-color: #e6e6e6;
+    display: flex;
+    align-items: center;
+    place-content: center;
+    cursor: pointer;
+}
+.header form input{
+    width: 100%;
+    height: 100%;
+    min-width: 100px;
+    max-width: 500px;
+    outline: none;
+    border: 1px solid #e6e6e6;
+    padding-left: 10px;
+
+}
+.header form input:focus{
+    border: 1px solid #292929;
+}
+.main-content{
+    width: 100%;
+}
+.main-content-head{
+    background-color: #f0f3f4;
+    
+}
+.main-content-head-container{
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.main-content-head-container h4{
+    font-size: large;
+    font-weight: 500;
+}
+.new-container{
+    display: flex;
+    gap: 30px;
+}
+.create-folder{
+    width: 150px;
+    height: 200px;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+    background-image: url('/static/img/docs-blank-googlecolors.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.create-folder:hover{
+    border: 1px solid #19dd12;
+}
+.create-folder img{
+    width: 100%;
+    height: 100%;
+}
+.folder-new-contain{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+}
+
+.folder-new-contain span{
+    margin-right: 10px;
+}
+.recent-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.recent-container a{
+    margin-bottom: 20px;
+}
+.folder-recent-contain{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: fit-content;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+}
+.folder-recent-contain:hover{
+    border: 1px solid #19dd12;
+}
+.recent-folder{
+    width: 180px;
+    height: 200px;
+    border-bottom: 1px solid #e6e6e6;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background-image: url('/static/img/docs-blank-googlecolors.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.folder-recent-contain .about{
+    padding: 5px 10px;
+}
+
+.main-content-recent-container{
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+time{
+    font-size: small;
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 668px) and (max-width : 1024px) {
+    /* Styles */
+    .main-content-head-container{
+        margin: 0 auto;
+        max-width: 100%;
+        padding: 10px 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .recent-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr ;
+    }
+    .recent-folder{
+        width: 170px;
+        height: 200px;
+    }
+  }
+
+
+
+@media only screen and (min-width : 480px) and (max-width : 660px) {
+
+    /* Styles */
+    .recent-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .recent-folder{
+        width: 150px;
+        height: 150px;
+    }
+  }
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+
+  /* Styles */
+  .header{
+    padding: 10px 20px;
+  }
+  .recent-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+}
+.recent-folder{
+    width: 150px;
+    height: 150px;
+}
+ 
+}
+
+
+

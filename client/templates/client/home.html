@@ -1,0 +1,151 @@
+{% extends 'client/index.html' %}
+{% load static %}
+
+
+{% block title %}
+    <title>Dashbabab</title>
+{% endblock %}
+
+{% block main_content %}
+<!-- <img src="{% static 'img/doc.png' %}" alt="" > -->
+<div class=" main-content">
+    <div class="main-content-head">
+        <div class="main-content-head-container">
+            <h4>Start a new folders</h4>
+            <div class="new-container">
+                <div class="folder-new-contain">
+                    <a href="">
+                        <p class="create-folder">
+                            <!-- <img src="docs-blank-googlecolors.png" alt=""> -->
+                        </p>
+                    </a>
+                    <p>
+                        Blank
+                    </p>
+                </div>
+                <div class="folder-new-contain">
+                    <a href="">
+                        <p class="create-folder">
+                            <img src="{% static 'img/doc.png' %}" alt="" >
+                        </p>
+                    </a>
+                    <p>
+                       <span>Folder</span> <i class="fa-regular fa-folder"></i> 
+                    </p>
+                </div>
+                <div class="folder-new-contain">
+                    <a href="">
+                        <p class="create-folder">
+                            <img src="{% static 'img/google-file.png' %}" alt="" >
+                        </p>
+                    </a>
+                    <p>
+                        <span>File</span> <i class="fa-regular fa-file"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+             
+    </div>
+
+    <!-- RECENT DOCUMENT  -->
+    <div>
+        <div class="main-content-recent-container">
+            <h4>Recent documents</h4>
+            <div class="recent-container">
+                <a href="">
+                    <div class="folder-recent-contain">
+                        <p class="recent-folder"> </p>
+                        <div class="about">
+                            <p>NAMENANA</p>
+                            <p>
+                                <time>2/15/3030</time> <i class="fa-regular fa-file"></i>
+                            </p>
+                        </div>
+                    </div> 
+                </a> 
+                <a href="">
+                    <div class="folder-recent-contain">
+                        <p class="recent-folder"> </p>
+                        <div class="about">
+                            <p>Python</p>
+                            <p>
+                                <time>2/15/3030</time> <i class="fa-regular fa-folder"></i> 
+                            </p>
+                        </div>
+                    </div> 
+                </a> 
+                <a href="">
+                    <div class="folder-recent-contain">
+                        <p class="recent-folder"> </p>
+                        <div class="about">
+                            <p>Assignment</p>
+                            <p>
+                                <time>2/15/3030</time> <i class="fa-regular fa-folder"></i> 
+                            </p>
+                        </div>
+                    </div> 
+                </a> 
+                <a href="">
+                    <div class="folder-recent-contain">
+                        <p class="recent-folder"> </p>
+                        <div class="about">
+                            <p>Altschool</p>
+                            <p>
+                                <time>2/15/3030</time> <i class="fa-regular fa-folder"></i> 
+                            </p>
+                        </div>
+                    </div> 
+                </a> 
+                <a href="">
+                    <div class="folder-recent-contain">
+                        <p class="recent-folder"> </p>
+                        <div class="about">
+                            <p>Local Government</p>
+                            <p>
+                                <time>2/15/3030</time> <i class="fa-regular fa-folder"></i> 
+                            </p>
+                        </div>
+                    </div> 
+                </a> 
+                <a href="">
+                    <div class="folder-recent-contain">
+                        <p class="recent-folder"> </p>
+                        <div class="about">
+                            <p>NAMENANA</p>
+                            <p>
+                                <time>2/15/3030</time> <i class="fa-regular fa-folder"></i> 
+                            </p>
+                        </div>
+                    </div> 
+                </a> 
+                <a href="">
+                    <div class="folder-recent-contain">
+                        <p class="recent-folder"> </p>
+                        <div class="about">
+                            <p>NAMENANA</p>
+                            <p>
+                                <time>2/15/3030</time> <i class="fa-regular fa-folder"></i> 
+                            </p>
+                        </div>
+                    </div> 
+                </a>    
+            </div>
+        </div>
+    </div>
+ </div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token%}
+    <lable>UPLOAD FILE</lable>
+    <input type="file" name="file" >
+    <input type="submit" value="Submit">
+
+    {% if uploaded_file %}
+    <a href="{{ uploaded_file }}">{{ uploaded_file}}</a>
+    {% endif%}
+</form>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
+

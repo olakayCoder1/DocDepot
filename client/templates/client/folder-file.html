@@ -1,0 +1,38 @@
+{% extends 'client/index.html' %}
+
+{% block title %}
+    <title>Folder | {{folder_name}}</title>
+{% endblock %}
+
+{% block main_content %}
+    <h1>{{folder_name}} Folder</h1>
+    <hr>
+    {% for file in files %}
+       <p>{{ file}}</p>
+       <a href="#">{{ file.name }}</a>
+    {% endfor %}
+    <hr>
+    <div id="files_container">
+
+    </div>
+{% endblock %}
+
+
+{% block script %}
+<script>
+
+
+function getDocument(){
+    const files = '{{data|escapejs}}'
+    console.log(JSON.parse(files))
+    console.log(files[3])
+    const main_container = document.getElementById('files_container')
+    const container = document.createAttribute('p')
+    container.innerHTML = `<span>
+                                ${files[3].name} 
+                            </span>`
+    main_container.appendChild(container)
+}
+    window.addEventListener('load', getDocument )
+</script>
+{% endblock %}
