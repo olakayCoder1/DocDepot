@@ -16,22 +16,31 @@ from client import serializers
 # Create your views here.
 
 
-def rename(url):
-    image_path = str(url)
-    image_path = str(settings.BASE_DIR) + str(url)
-    print(image_path)
-    print(settings.MEDIA_ROOT)
-    return  image_path 
+def rename(instance , new_name):
+    old_name = str(instance.file).split(os.path.sep)[-1]
+    new_name = new_name + '.' + old_name.split('.')[-1]  
+    old_file_name_list = str(instance.file).split(os.path.sep)[:-1]
+    old_file_name_list.append(new_name)
+    new_file_path = str(os.path.sep).join(old_file_name_list)
+    old = r'%s'% instance.file
+    new = r'%s'% new_file_path
+    print(old)
+    print(new)
+    os.rename(old,new)
+    return True 
 
+
+
+
+def get_upload_path(instance , filename):
+    return os.path.join(str(instance.file) , filename)
 
 def home(request):
+
+
+    file = File.objects.get(id=15)
     
-    for model in FileFolder.objects.all():
-        # print(model.file) 
-        name = str(model.file).split('/')[-1]
-        # print(name)
-        # print('**'*20)   
-        # image_path = rename(model.file.url)
+
     return render(request, 'client/home.html')
 
 
@@ -72,3 +81,7 @@ def upload_file_api(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
