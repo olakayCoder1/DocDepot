@@ -3,6 +3,7 @@ import ssl
 import smtplib
 import os
 import environ
+from django.conf import settings
 
 
 env = environ.Env()
@@ -37,3 +38,57 @@ def send_reset_mail(receiver,token,uidb64):
     except:
         pass
     return True
+
+
+
+
+
+def update_file_url(instance ,name):
+
+    # get instance file url 
+    instance_file_url = instance.file 
+    #  change the file name to the new name in the url
+    old_file_name = str(instance_file_url).split('/')[-1] 
+    old_path = str(instance_file_url).split('/')
+
+    u = old_file_name.split('.')
+    u[0] = name
+    new_name_file = '.'.join(u)
+
+    old_path[-1] = new_name_file
+    renamed_str_path = '/'.join(old_path)
+
+    renamed_path = r'%s'%renamed_str_path
+    instance.file = renamed_path
+    instance.save()
+    return True
+
+
+
+def rename(instance , new_name):
+    # rename the file path to use os.path.sep
+    new_instance = f'{os.path.sep}'.join(str(instance.file).split('/'))
+    # append a path sep to the start of the new_instance
+    current_path =   str(os.path.sep) + new_instance
+    # getting the full path to the newly updated old path
+    old_path = str(settings.MEDIA_ROOT) +  current_path 
+    # Now let create a path to for the new name 
+    # first let split the path using the path sep
+    old_path_separated_list = old_path.split(os.path.sep)
+    editing_new_name = old_path.split(os.path.sep)[-1]
+    rename_old_file_name_list =  editing_new_name.split('.') 
+    # Now change change the file name to the new name 
+    rename_old_file_name_list[0] =  new_name
+    old_name_renamed_to = '.'.join(rename_old_file_name_list)
+    # print(old_name_renamed_to) 
+    # create the full path for the new name 
+    old_path_separated_list[-1] = old_name_renamed_to
+    new_path_of_file = str(os.path.sep).join(old_path_separated_list)
+    # make both new and old a raw string 
+    old = r'%s'% old_path
+    new = r'%s'% new_path_of_file   
+    #  use os rename function to change the name of the file 
+    os.rename(old,new)
+    #  Now let cal the function below to update the file url in the database 
+    update_file_url(instance , new_name)
+    return True 

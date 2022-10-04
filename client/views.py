@@ -11,23 +11,12 @@ from rest_framework.response import Response
 from rest_framework.decorators import APIView ,api_view
 from django.conf import settings
 import os
-
 from client import serializers
+from .functions import (
+    send_reset_mail , rename , update_file_url
+)
 # Create your views here.
 
-
-def rename(instance , new_name):
-    old_name = str(instance.file).split(os.path.sep)[-1]
-    new_name = new_name + '.' + old_name.split('.')[-1]  
-    old_file_name_list = str(instance.file).split(os.path.sep)[:-1]
-    old_file_name_list.append(new_name)
-    new_file_path = str(os.path.sep).join(old_file_name_list)
-    old = r'%s'% instance.file
-    new = r'%s'% new_file_path
-    print(old)
-    print(new)
-    os.rename(old,new)
-    return True 
 
 
 
@@ -36,10 +25,6 @@ def get_upload_path(instance , filename):
     return os.path.join(str(instance.file) , filename)
 
 def home(request):
-
-
-    file = File.objects.get(id=15)
-    
 
     return render(request, 'client/home.html')
 
